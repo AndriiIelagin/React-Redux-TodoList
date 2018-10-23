@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import TodosList from './TodosList';
 import './App.css';
+import { Link, Route, Redirect } from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>Todo List: </h1>
+        <p className="btn btn-secondary rounded-circle">
+          <Link to="/todos">See all todos</Link>
+        </p>
+        <p className="btn btn-info rounded-circle">
+          <Link to="/todos/new">Add a todo</Link>
+        </p>
+        <Route path="/todos" component={TodosList} />
+        <Route exact path="/" render={() => <Redirect to="/todos" />} />
       </div>
     );
   }
