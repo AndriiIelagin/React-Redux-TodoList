@@ -9,11 +9,15 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import thunk from "redux-thunk";
 
+let devTools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__();
+if (process.env.NODE_ENV) {
+    devTools = a => a;
+}
 const store = createStore(
     rootReducer, 
     compose(
         applyMiddleware(thunk),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        devTools
     ));
 
 ReactDOM.render(
